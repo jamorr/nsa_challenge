@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime
 
 # df = pd.read_csv("login.txt", sep="\t", parse_dates=[[0,1]], header=None)
-df = pd.read_csv("login.txt", sep="\t",  header=None)
+df = pd.read_csv("logins.txt", sep="\t",  header=None)
 
 df[2].unique()
 
@@ -28,7 +28,7 @@ for name in enames[2].unique():
     if i%50 == 0:
         print(f"{i}/{len(enames[2].unique())}")
     i+=1
-        
-        
+
+
     #Check if length of name dataframe > 2
 anomalies.keys()

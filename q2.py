@@ -9,6 +9,10 @@ df[["First Letter", "Name"]] = df["uname"].str.split(".", expand=True)
 # df = df.convert_dtypes(dtype_backend="pyarrow")
 jdf = df.loc[df["First Letter"]=="j"]
 # get just the times in string format
-jdf["time"] = jdf["datetime"].dt.time
+# jdf["time"] = jdf["datetime"].dt.time
 # count number of unique login times by name
-jdf.groupby("Name")["time"].nunique().sort_values().tail(1)
+# print(jdf.groupby("Name")["time"].nunique().sort_values().tail(1))
+# jdf["time"] = jdf["datetime"]
+
+jdf["time"] = jdf["datetime"].astype("int64") - jdf["datetime"].dt.normalize().astype("int64")
+print(jdf[jdf["login"]=="IN"].groupby("Name")["time"].var().nlargest(1))
